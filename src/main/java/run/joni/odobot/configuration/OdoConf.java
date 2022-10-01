@@ -36,25 +36,27 @@ public class OdoConf {
         OdoConf.ODO_VERSION = odobotVersion;
     }
 
-
     @Bean
     public <T extends Event> GatewayDiscordClient gatewayDiscordClient(List<EventListener<T>> eventListeners) {
-        LOG.info("Creating Discord client...");
-        LOG.info("OdoBot version: " + ODO_VERSION);
-        GatewayDiscordClient client = DiscordClientBuilder.create(odoDiscordToken)
-                .build()
-                .login()
-                .block();
+        try {
+            LOG.info("OdoBot version: " + ODO_VERSION);
+            LOG.info("Creating Discord client...");
+            // Create a new Discord client
+            GatewayDiscordClient client = DiscordClientBuilder.create(odoDiscordToken)
+                    .build()
+                    .login()
+                    .block();
 
-        for(EventListener<T> listener : eventListeners) {
-           client.on(listener.getEventType())
-                   .flatMap(listener::execute)
-                   .onErrorResume(listener::handleError)
-                   .subscribe();
+            // Register event listeners in a loop
+            eventListeners.forEach(listener -> client.on(listener.getEventType())
+                    .flatMap(listener::execute)
+                    .onErrorResume(listener::handleError)
+                    .subscribe());
+            return client;
+
+        } catch (Exception e) {
+            LOG.error("Error while creating Discord client", e);
+            return null;
         }
-
-        return client;
-
     }
-
 }
