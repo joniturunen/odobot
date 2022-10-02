@@ -1,0 +1,8 @@
+     dBBBBP     dBBBBb     dBBBBP    dBBBBb     dBBBBP  dBBBBBBP
+    dB'.BP         dBP    dBP.BP        dBP    dBP.BP
+   dB'.BP     dBP dBP    dBP.BP     dBBBK'    dBP.BP     dBP
+  dB'.BP     dBP dBP    dBP.BP     dB' db    dBP.BP     dBP
+ dBBBBP     dBBBBBP    dBBBBP     dBBBBP'   dBBBBP     dBP
+___________________________________________________________________
+${application.title} ${application.version}
+Powered by Spring Boot ${spring-boot.version}
