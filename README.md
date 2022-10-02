@@ -9,6 +9,12 @@ Discord bot based on [Discord4J](https://discord4j.readthedocs.io/en/latest/), [
 - Connects to a Discord server
 - Responds to message !odo via DM
 
+### Configuration
+
+- `discord.token` - Discord bot token
+- `discord.ownerId` - Discord user ID of the bot owner
+
+
 ## Todo
 
 - [ ] Add capability to respond to !odo in a channel with a mention and a message
