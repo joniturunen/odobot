@@ -39,7 +39,7 @@ public class OdoConf {
     @Bean
     public <T extends Event> GatewayDiscordClient gatewayDiscordClient(List<EventListener<T>> eventListeners) {
         try {
-            LOG.info("OdoBot version: " + ODO_VERSION);
+            LOG.info("OdoBot (" + ODO_VERSION + ") is starting...");
             LOG.info("Creating Discord client...");
             // Create a new Discord client
             GatewayDiscordClient client = DiscordClientBuilder.create(odoDiscordToken)
