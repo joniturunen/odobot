@@ -1,4 +1,4 @@
-package run.joni.odobot.configuration;
+package run.joni.odobot;
 
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
@@ -48,10 +48,14 @@ public class OdoConf {
                     .block();
 
             // Register event listeners in a loop
-            eventListeners.forEach(listener -> client.on(listener.getEventType())
-                    .flatMap(listener::execute)
-                    .onErrorResume(listener::handleError)
-                    .subscribe());
+            eventListeners.forEach(listener -> {
+                assert client != null;
+                client.on(listener.getEventType())
+                        .flatMap(listener::execute)
+                        .onErrorResume(listener::handleError)
+                        .subscribe();
+            });
+
             return client;
 
         } catch (Exception e) {
